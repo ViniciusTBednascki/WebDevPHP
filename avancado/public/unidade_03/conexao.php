@@ -1,42 +1,48 @@
-<?php 
-    require_once("../../conexao/conexao.php");
-    
-    // passo 3
-    $consulta_produtos  = "SELECT nomeproduto, precounitario, tempoentrega ";
-    $consulta_produtos .= " FROM produtos";
-    $consulta_produtos .= " WHERE tempoentrega = 5";
-    $produtos = mysqli_query($conecta, $consulta_produtos );
+<?php
+	$dadosDeConexao = [
+	"servidor" => "localhost",
+	"usuario" => "root",
+	"senha" => "",
+	"nome" => "andes",
+	];
+	$conexao = mysqli_connect($dadosDeConexao["servidor"], $dadosDeConexao["usuario"], $dadosDeConexao["senha"], $dadosDeConexao["nome"]);
 
-    if( !$produtos) {
-        die("Falha na consulta ao banco de dados");
-    }
+	if( mysqli_connect_errno()) {
+		die("Conexão falhou: " . mysqli_connect_errno());
+	}
 
+	$consulta_produtos  = "SELECT nomeproduto, precounitario, tempoentrega";
+	$consulta_produtos .= " FROM produtos";
+	// $consulta_produtos .= " where tempoentrega = 5";
+	$produtos = mysqli_query($conexao, $consulta_produtos);
+
+	if(!$produtos) {
+		die("Falha na consulta ao banco de dados");
+	}
 ?>
-<!doctype html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Curso PHP Integração com MySQL</title>
-    </head>
-
-    <body>
-        <ol>
-        <?php
-            while ( $registro = mysqli_fetch_assoc($produtos)) {
-        ?>
-                <li><?php echo $registro["nomeproduto"]  ?></li>
-    
-        <?php    
-            }
-        ?>
-        </ol>
-
-        <?php
-            mysqli_free_result($produtos);
-        ?>
-
-    </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>unidade 03 - Apis de conexão</title>
+	</head>
+	<body>
+		<ul>
+			<?php
+				while($produto = mysqli_fetch_assoc($produtos)) {
+			?>
+				<li><?php echo $produto["nomeproduto"] ?></li>
+			<?php
+				}
+			?>
+		</ul>
+		<?php
+			mysqli_free_result($produtos);
+		?>
+	</body>
 </html>
 <?php
-    mysqli_close($conecta);
+	mysqli_close($conexao);
 ?>
