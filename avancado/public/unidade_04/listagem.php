@@ -1,29 +1,46 @@
 <?php require_once("../../conexao/conexao.php"); ?>
+<?php
+	$produtos = "SELECT produtoID, nomeproduto, tempoentrega, precounitario";
+	$produtos .= " FROM produtos";
+	$resultado = mysqli_query($conexao, $produtos);
+	
+	if(!$resultado) {
+		die("Falha na consulta ao banco de dados");
+	}
+?>
 
 <!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Curso PHP Integração com MySQL</title>
-        
-        <!-- estilo -->
-        <link href="_css/estilo.css" rel="stylesheet">
-    </head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Unidade 04 - Listagem de Produtos</title>
+		
+		<!-- estilo -->
+		<link href="_css/estilo.css" rel="stylesheet">
+	</head>
 
-    <body>
-        <?php include_once("../_incluir/topo.php"); ?>
-        <?php include_once("../_incluir/funcoes.php"); ?>
-        
-        <main>  
-            
-        </main>
-
-        <?php include_once("../_incluir/rodape.php"); ?> 
-    </body>
+	<body>
+		<?php include_once("../_incluir/topo.php"); ?>
+		<?php include_once("../_incluir/funcoes.php"); ?>
+		<main>
+			<?php
+				while($linha = mysqli_fetch_assoc($resultado)) {
+			?>
+				<ul>
+					<li><?php echo $linha["nomeproduto"] ?></li>
+					<li><?php echo $linha["precounitario"] ?></li>
+					<li><?php echo $linha["tempoentrega"] ?></li>
+				</ul>
+			<?php
+				}
+			?>
+		</main>
+		<?php include_once("../_incluir/rodape.php"); ?> 
+	</body>
 </html>
 
 <?php
-    // Fechar conexao
-    mysqli_close($conecta);
+	// Fechar conexao
+	mysqli_close($conexao);
 ?>
