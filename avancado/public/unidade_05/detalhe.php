@@ -1,4 +1,24 @@
 <?php require_once("../../conexao/conexao.php"); ?>
+<?php
+    if(isset($_GET["codigo"])) {
+		$produtoID = $_GET["codigo"];
+	} else {
+		header("Location: listagem.php");
+		exit();
+	}
+
+	// Consulta ao banco de dados
+	$consulta = "SELECT *";
+	$consulta .= " FROM produtos";
+	$consulta .= " WHERE produtoID = {$produtoID}";
+	$detalhe = mysqli_query($conexao, $consulta);
+	
+	if($detalhe->num_rows == 0) {
+		$erro_busca = "Produto não encontrado.";
+	} else {
+		$dados_detalhe = mysqli_fetch_assoc($detalhe);
+	}
+?>
 
 <!doctype html>
 <html lang="pt-BR">
@@ -16,8 +36,14 @@
 		<?php include_once("../_incluir/topo.php"); ?>
 		<?php include_once("../_incluir/funcoes.php"); ?>
 		<main>
-            
-        </main>
+			<?php
+				if(isset($erro_busca)) {
+					echo $erro_busca;
+				} else {
+					print_r($dados_detalhe);
+				}
+			?>
+		</main>
 		<?php include_once("../_incluir/rodape.php"); ?> 
 	</body>
 </html>
