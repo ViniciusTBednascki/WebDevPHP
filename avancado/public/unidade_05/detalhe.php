@@ -1,4 +1,12 @@
 <?php require_once("../../conexao/conexao.php"); ?>
+<?php
+    if(isset($_GET["codigo"])) {
+        $produtoID = $_GET["codigo"];
+	} else {
+		header("Location: listagem.php");
+        exit();
+    }
+?>
 
 <!doctype html>
 <html lang="pt-BR">
