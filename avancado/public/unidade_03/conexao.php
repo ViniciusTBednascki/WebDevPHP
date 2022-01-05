@@ -1,16 +1,6 @@
 <?php
-	$dadosDeConexao = [
-	"servidor" => "localhost",
-	"usuario" => "root",
-	"senha" => "",
-	"nome" => "andes",
-	];
-	$conexao = mysqli_connect($dadosDeConexao["servidor"], $dadosDeConexao["usuario"], $dadosDeConexao["senha"], $dadosDeConexao["nome"]);
-
-	if( mysqli_connect_errno()) {
-		die("Conexão falhou: " . mysqli_connect_errno());
-	}
-
+	require_once("../../conexao/conexao.php");
+	
 	$consulta_produtos  = "SELECT nomeproduto, precounitario, tempoentrega";
 	$consulta_produtos .= " FROM produtos";
 	// $consulta_produtos .= " where tempoentrega = 5";
