@@ -1,5 +1,9 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
+	// Determinar localidade BR
+	setlocale(LC_ALL, 'pt_BR');
+	
+	// Consulta ao banco de dados
 	$produtos = "SELECT produtoID, nomeproduto, tempoentrega, precounitario, imagempequena";
 	$produtos .= " FROM produtos";
 	$resultado = mysqli_query($conexao, $produtos);
