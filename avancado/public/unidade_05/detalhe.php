@@ -40,7 +40,7 @@
 		
 		<!-- estilo -->
 		<link href="_css/estilo.css" rel="stylesheet">
-		<link href="_css/produtos.css" rel="stylesheet">
+		<link href="_css/produto_detalhe.css" rel="stylesheet">
 	</head>
 
 	<body>
@@ -58,14 +58,14 @@
 			?>
 				<div id="detalhe_produto">
 					<ul>
-						<li><img src="<?php echo $imagemgrande ?>"></li>
-						<li><?php echo $nomeproduto ?></li>
+						<li class="imagem"><img src="<?php echo $imagemgrande ?>"></li>
+						<li><h2><?php echo $nomeproduto ?></h2></li>
 						<li><?php echo $descricao ?></li>
-						<li><?php echo $codigobarra ?></li>
-						<li><?php echo $tempoentrega ?></li>
-						<li><?php echo $precorevenda ?></li>
-						<li><?php echo $precounitario ?></li>
-						<li><?php echo $estoque ?></li>
+						<li>Código de barra: <?php echo $codigobarra ?></li>
+						<li>Tempo de entrega: <?php echo $tempoentrega ?> dias</li>
+						<li>Preço revenda: <?php echo real_format($precorevenda) ?></li>
+						<li>Preço unitário: <?php echo real_format($precounitario) ?></li>
+						<li>Estoque: <?php echo $estoque ?></li>
 					</ul>
 				</div>
 			<?php

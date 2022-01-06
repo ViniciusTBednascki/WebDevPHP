@@ -41,7 +41,7 @@
 						</li>
 						<li><h3><?php echo $linha["nomeproduto"] ?></h3></li>
 						<li>Preço unitário: <?php echo real_format($linha["precounitario"]) ?></li>
-						<li>Tempo entrega: <?php echo $linha["tempoentrega"] ?></li>
+						<li>Tempo entrega: <?php echo $linha["tempoentrega"] ?> dias</li>
 					</ul>
 				<?php
 					}
