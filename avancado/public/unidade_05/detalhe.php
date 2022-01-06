@@ -17,6 +17,17 @@
 		$erro_busca = "Produto não encontrado.";
 	} else {
 		$dados_detalhe = mysqli_fetch_assoc($detalhe);
+
+		[
+			"nomeproduto" => $nomeproduto,
+			"descricao" => $descricao,
+			"codigobarra" => $codigobarra,
+			"tempoentrega" => $tempoentrega,
+			"precorevenda" => $precorevenda,
+			"precounitario" => $precounitario,
+			"estoque" => $estoque,
+			"imagemgrande" => $imagemgrande,
+		] = $dados_detalhe;
 	}
 ?>
 
@@ -38,9 +49,26 @@
 		<main>
 			<?php
 				if(isset($erro_busca)) {
-					echo $erro_busca;
+			?>
+				<div>
+					<h3><?php echo $erro_busca ?></h3>
+				</div>
+			<?php
 				} else {
-					print_r($dados_detalhe);
+			?>
+				<div id="detalhe_produto">
+					<ul>
+						<li><img src="<?php echo $imagemgrande ?>"></li>
+						<li><?php echo $nomeproduto ?></li>
+						<li><?php echo $descricao ?></li>
+						<li><?php echo $codigobarra ?></li>
+						<li><?php echo $tempoentrega ?></li>
+						<li><?php echo $precorevenda ?></li>
+						<li><?php echo $precounitario ?></li>
+						<li><?php echo $estoque ?></li>
+					</ul>
+				</div>
+			<?php
 				}
 			?>
 		</main>
