@@ -1,8 +1,6 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
 	session_start();
-
-	$_SESSION["usuario"] = "vinicius";
 ?>
 <!doctype html>
 <html>
@@ -18,12 +16,16 @@
 		<?php include_once("../_incluir/topo.php"); ?>
 		<?php include_once("../_incluir/funcoes.php"); ?>
 		<main>
-			<?php
-				echo $_SESSION["usuario"];
-			?>
-			<p>
-				<a href="pagina2.php">Página 2</a>
-			</p>
+      <?php
+        if( isset($_SESSION["usuario"])) {
+          unset($_SESSION["usuario"]);
+        }
+
+				session_destroy();
+      ?>
+      <p>
+        <a href="pagina1.php">Página 1</a>
+      </p>
 		</main>
 		<?php include_once("../_incluir/rodape.php"); ?> 
 	</body>
