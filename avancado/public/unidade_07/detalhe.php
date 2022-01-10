@@ -1,6 +1,13 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
-    if(isset($_GET["codigo"])) {
+	session_start();
+
+	if(!isset($_SESSION["user_portal"])) {
+		header("location: login.php");
+		return;
+	}
+
+  if(isset($_GET["codigo"])) {
 		$produtoID = $_GET["codigo"];
 	} else {
 		header("Location: listagem.php");

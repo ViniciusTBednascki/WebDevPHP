@@ -1,5 +1,7 @@
 <?php require_once("../../conexao/conexao.php"); ?>
 <?php
+  session_start();
+
 	if(isset($_POST["submit"]) && $_POST["submit"] == "login") {
     $usuario = $_POST["usuario"];
     $senha = $_POST["senha"];
@@ -18,6 +20,7 @@
     if(empty($informacao)) {
       $erro_busca = "Autenticação inválida";
     } else {
+      $_SESSION["user_portal"] = $informacao["clienteID"];
       header("location: listagem.php");
     }
   }
